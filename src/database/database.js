@@ -6,12 +6,12 @@ const connectDatabase = () => {
   mongoose
     .connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
-      useUnifieldTopology: true,
+      useUnifiedTopology: true 
     })
     .then(() => {
       console.log("MongoDB Conectado");
     })
-    .catch((err) => console.log(`Erro ao conectar com o banco ${err}`));
+    .catch((err) => console.log(`Erro ao conectar com o banco: ${err}`));
 };
 
 module.exports = connectDatabase;
