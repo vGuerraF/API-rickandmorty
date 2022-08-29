@@ -1,14 +1,19 @@
 const User = require("./User");
 
-const findByEmailUserService = (email) => {
+const findByEmailUserService = async (email) => {
   User.findOne({ email: email });
 };
 
-const createUserService = (body) => {
+const createUserService = async (body) => {
   return User.create(body);
+};
+
+const findAllUserService = async () => {
+  return User.find();
 };
 
 module.exports = {
   findByEmailUserService,
   createUserService,
+  findAllUserService
 };

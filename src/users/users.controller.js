@@ -29,8 +29,19 @@ const createUserController = async (req, res) => {
 
   res.status(201).send(user);
 };
+
 const findAllUserController = async (req, res) => {
-  res.send({ message: "Find All ok" });
+  const users = await userService.findAllUserService();
+
+  console.log(users)
+
+  if(users.length === 0) {
+    return res.status(400).send({
+      message: "Não existem usuários cadastrados!"
+    })
+  }
+
+  res.send(users)
 };
 
 module.exports = { createUserController, findAllUserController };
