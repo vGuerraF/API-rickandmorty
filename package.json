@@ -1,0 +1,28 @@
+{
+  "name": "api-rickandmorty",
+  "version": "1.0.0",
+  "description": "API rick and morty",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vGuerraF/API-rickandmorty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vGuerraF/API-rickandmorty/issues"
+  },
+  "homepage": "https://github.com/vGuerraF/API-rickandmorty#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.3",
+    "nodemon": "^2.0.19"
+  }
+}
