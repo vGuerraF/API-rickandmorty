@@ -1,4 +1,5 @@
 require("dotenv").config();
+const personagensRoute = require("./personagens/personagens.route")
 const express = require("express");
 const cors = require("cors");
 const connectDatabase = require("./database/database");
@@ -14,7 +15,7 @@ app.use(express.json());
 
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
-
+app.use("/personagens", personagensRoute)
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
