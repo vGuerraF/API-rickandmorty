@@ -1,5 +1,5 @@
-const personagensService = require('./personagens.service');
-const mongoose = require('mongoose');
+const personagensService = require("./personagens.service");
+const mongoose = require("mongoose");
 
 const findAllpersonagensController = async (req, res) => {
   const personagens = await personagensService.findAllpersonagensService();
@@ -7,7 +7,7 @@ const findAllpersonagensController = async (req, res) => {
   if (personagens.length == 0) {
     return res
       .status(404)
-      .send({ message: 'Não existe nenhum personagem cadastrado!' });
+      .send({ message: "Não existe nenhum personagem cadastrado!" });
   }
 
   res.send(personagens);
@@ -17,15 +17,15 @@ const findByIdpersonagemController = async (req, res) => {
   const idParam = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(400).send({ message: 'Id invalido!' });
+    return res.status(400).send({ message: "Id invalido!" });
   }
 
   const chosenpersonagem = await personagensService.findByIdpersonagenservice(
-    idParam,
+    idParam
   );
 
   if (!chosenpersonagem) {
-    return res.status(404).send({ message: 'Personagem não encontrado!' });
+    return res.status(404).send({ message: "Personagem não encontrado!" });
   }
 
   res.send(chosenpersonagem);
@@ -34,20 +34,14 @@ const findByIdpersonagemController = async (req, res) => {
 const createpersonagemController = async (req, res) => {
   const personagem = req.body;
 
-  if (
-    !personagem ||
-    !personagem.nome ||
-    !personagem.idade ||
-    !personagem.oficio ||
-    !personagem.habilidade
-  ) {
+  if (!personagem || !personagem.nome || !personagem.urlPersonagem) {
     return res
       .status(400)
-      .send({ message: 'Preencha todo o objeto do personagem!' });
+      .send({ message: "Preencha todo o objeto do personagem!" });
   }
 
   const newpersonagem = await personagensService.createpersonagenservice(
-    personagem,
+    personagem
   );
   res.status(201).send(newpersonagem);
 };
@@ -56,7 +50,7 @@ const updatepersonagemController = async (req, res) => {
   const idParam = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(400).send({ message: 'Id invalido!' });
+    return res.status(400).send({ message: "Id invalido!" });
   }
 
   const personagemEdit = req.body;
@@ -64,18 +58,16 @@ const updatepersonagemController = async (req, res) => {
   if (
     !personagemEdit ||
     !personagemEdit.nome ||
-    !personagemEdit.idade ||
-    !personagemEdit.oficio ||
-    !personagemEdit.habilidade
+    !personagemEdit.urlPersonagem
   ) {
     return res
       .status(400)
-      .send({ message: 'Preencha todo o objeto do personagem!' });
+      .send({ message: "Preencha todo o objeto do personagem!" });
   }
 
   const updatedpersonagem = await personagensService.updatepersonagenservice(
     idParam,
-    personagemEdit,
+    personagemEdit
   );
   res.send(updatedpersonagem);
 };
@@ -84,12 +76,12 @@ const deletepersonagemController = async (req, res) => {
   const idParam = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(400).send({ message: 'Id invalido!' });
+    return res.status(400).send({ message: "Id invalido!" });
   }
 
   await personagensService.deletepersonagenservice(idParam);
 
-  res.send({ message: 'personagem deletada com sucesso!' });
+  res.send({ message: "personagem deletada com sucesso!" });
 };
 
 module.exports = {

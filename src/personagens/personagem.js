@@ -5,15 +5,7 @@ const PersonagemSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  idade: {
-    type: Number,
-    require: true,
-  },
-  oficio: {
-    type: String,
-    require: true,
-  },
-  habilidade: {
+  urlPersonagem: {
     type: String,
     require: true,
   },
