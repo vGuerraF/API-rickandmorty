@@ -1,4 +1,5 @@
 const userService = require("./users.service");
+const authService = require("../auth/auth.service");
 
 const createUserController = async (req, res) => {
   const { name, username, email, password } = req.body;
@@ -27,21 +28,31 @@ const createUserController = async (req, res) => {
     });
   }
 
-  res.status(201).send(user);
+  const token = authService.generateToken(user.id);
+
+  res.status(201).send({
+    user: {
+      id: user.id,
+      name,
+      username,
+      email,
+    },
+    token,
+  });
 };
 
 const findAllUserController = async (req, res) => {
   const users = await userService.findAllUserService();
 
-  console.log(users)
+  console.log(users);
 
-  if(users.length === 0) {
+  if (users.length === 0) {
     return res.status(400).send({
-      message: "Não existem usuários cadastrados!"
-    })
+      message: "Não existem usuários cadastrados!",
+    });
   }
 
-  res.send(users)
+  res.send(users);
 };
 
 module.exports = { createUserController, findAllUserController };

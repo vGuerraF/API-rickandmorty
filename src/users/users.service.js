@@ -1,7 +1,7 @@
 const User = require("./User");
 
 const findByEmailUserService = async (email) => {
-  User.findOne({ email: email });
+  return User.findOne({ email: email });
 };
 
 const createUserService = async (body) => {
